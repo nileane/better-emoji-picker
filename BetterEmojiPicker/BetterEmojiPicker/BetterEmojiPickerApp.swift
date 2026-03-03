@@ -389,7 +389,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
     // MARK: - Emoji Insertion
 
     /// Inserts an emoji into the currently focused application.
-    func insertEmoji(_ emoji: Emoji) {
+    func insertEmoji(_ emoji: Emoji, keepOpen: Bool = true) {
         // Check permission
         guard PasteService.shared.hasPermission() else {
             print("⚠️ BEP: Cannot insert emoji - no accessibility permission")
@@ -412,15 +412,22 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
 
             if success {
                 print("✅ BEP: Inserted \(emoji.emoji)")
-                // Mark that we just inserted an emoji - enables backspace forwarding
-                self?.pickerViewModel.markEmojiInserted()
+                if keepOpen {
+                    // Mark that we just inserted an emoji - enables backspace forwarding
+                    self?.pickerViewModel.markEmojiInserted()
+                } else {
+                    // If caller requested the picker to close after insert, hide it now
+                    self?.hidePicker()
+                }
             } else {
                 print("⚠️ BEP: Failed to insert emoji")
             }
 
-            // Restore key status after a brief delay to ensure paste events are processed
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.03) {
-                self?.pickerPanel?.makeKey()
+            // Restore key status after a brief delay only when keeping open
+            if keepOpen {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.03) {
+                    self?.pickerPanel?.makeKey()
+                }
             }
         }
     }
@@ -495,8 +502,8 @@ struct PickerContentView: View {
         PickerView(
             viewModel: appDelegate.pickerViewModel,
             isPinned: appDelegate.isPinned,
-            onInsertEmoji: { emoji in
-                appDelegate.insertEmoji(emoji)
+            onInsertEmoji: { emoji, keepOpen in
+                appDelegate.insertEmoji(emoji, keepOpen: keepOpen)
             },
             onCopyEmoji: { emoji in
                 appDelegate.copyEmoji(emoji)

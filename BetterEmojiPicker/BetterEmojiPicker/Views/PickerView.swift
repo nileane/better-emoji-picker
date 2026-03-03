@@ -14,7 +14,7 @@ struct PickerView: View {
     @ObservedObject var viewModel: PickerViewModel
 
     let isPinned: Bool
-    let onInsertEmoji: (Emoji) -> Void
+    let onInsertEmoji: (Emoji, Bool) -> Void
     let onCopyEmoji: (Emoji) -> Void
     let onTogglePin: () -> Void
     let onDismiss: () -> Void
@@ -130,13 +130,13 @@ struct PickerView: View {
 
     private func handleEnterKey() {
         if let emoji = viewModel.confirmSelection() {
-            onInsertEmoji(emoji)
+            onInsertEmoji(emoji, false)
         }
     }
 
     private func handleEmojiClick(_ emoji: Emoji) {
         let selectedEmoji = viewModel.selectEmoji(emoji)
-        onInsertEmoji(selectedEmoji)
+        onInsertEmoji(selectedEmoji, true)
     }
 
     private func handleCopyKey() {
