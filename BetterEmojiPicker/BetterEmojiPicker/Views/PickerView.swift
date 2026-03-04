@@ -25,7 +25,7 @@ struct PickerView: View {
 
     private let panelWidth: CGFloat = 400
     private let panelHeight: CGFloat = 320
-    private let cornerRadius: CGFloat = 12
+    private let cornerRadius: CGFloat = 25
 
     var body: some View {
         ZStack {
@@ -105,15 +105,23 @@ struct PickerView: View {
         .padding(.horizontal, 10)
         .padding(.vertical, 8)
         .background(
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.primary.opacity(0.05))
+            RoundedRectangle(cornerRadius: 50)
+                .fill(Color.primary.opacity(0.12))
         )
     }
 
+    @ViewBuilder
     private var panelBackground: some View {
-        RoundedRectangle(cornerRadius: cornerRadius)
-            .fill(.regularMaterial)
-            .shadow(color: .black.opacity(0.2), radius: 20, x: 0, y: 10)
+        if #available(macOS 26.0, *) {
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .fill(.clear)
+                .glassEffect(in: .rect(cornerRadius: cornerRadius))
+                .shadow(color: .black.opacity(0.2), radius: 20, x: 0, y: 10)
+        } else {
+            RoundedRectangle(cornerRadius: cornerRadius)
+                .fill(.regularMaterial)
+                .shadow(color: .black.opacity(0.2), radius: 20, x: 0, y: 10)
+        }
     }
 
     private var pinButton: some View {

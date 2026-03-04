@@ -28,7 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C0516CA92EFBFBCF00EF5C42 /* BetterEmojiPicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterEmojiPicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0516CA92EFBFBCF00EF5C42 /* BetterEmojiPicker (Dev).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BetterEmojiPicker (Dev).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0516CBA2EFBFBD100EF5C42 /* BetterEmojiPickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BetterEmojiPickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0516CC42EFBFBD100EF5C42 /* BetterEmojiPickerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BetterEmojiPickerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -90,7 +90,7 @@
 		C0516CAA2EFBFBCF00EF5C42 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C0516CA92EFBFBCF00EF5C42 /* BetterEmojiPicker.app */,
+				C0516CA92EFBFBCF00EF5C42 /* BetterEmojiPicker (Dev).app */,
 				C0516CBA2EFBFBD100EF5C42 /* BetterEmojiPickerTests.xctest */,
 				C0516CC42EFBFBD100EF5C42 /* BetterEmojiPickerUITests.xctest */,
 			);
@@ -120,7 +120,7 @@
 				C0B338E12EFD333400808732 /* TOMLKit */,
 			);
 			productName = BetterEmojiPicker;
-			productReference = C0516CA92EFBFBCF00EF5C42 /* BetterEmojiPicker.app */;
+			productReference = C0516CA92EFBFBCF00EF5C42 /* BetterEmojiPicker (Dev).app */;
 			productType = "com.apple.product-type.application";
 		};
 		C0516CB92EFBFBD100EF5C42 /* BetterEmojiPickerTests */ = {
@@ -436,6 +436,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"BetterEmojiPicker/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = BetterEmojiPicker;
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (

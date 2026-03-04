@@ -284,8 +284,8 @@ First-run experience:
 
 - **Width**: ~400px (fits 10 emojis at ~36px each + padding)
 - **Height**: ~300px (shows ~6-7 rows)
-- **Corner Radius**: 12px
-- **Background**: System background with vibrancy
+- **Corner Radius**: 25px (mimic new macOS Tahoe window radius)
+- **Background**: Liquid Glass material on macOS, fallback to ultra‑thin vibrancy blur
 - **Shadow**: Standard floating panel shadow
 
 ### Search Field

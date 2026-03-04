@@ -40,6 +40,15 @@ class FloatingPanel: NSPanel {
 
         self.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary, .transient]
         self.animationBehavior = .utilityWindow
+
+        // match the SwiftUI corner radius so the underlying window
+        // itself is clipped. this keeps the panel shape consistent when
+        // dragging or when shadows extend.
+        if let view = self.contentView {
+            view.wantsLayer = true
+            view.layer?.cornerRadius = 25
+            view.layer?.masksToBounds = true
+        }
     }
 
     override var canBecomeKey: Bool { true }
