@@ -45,7 +45,7 @@ class FloatingPanel: NSPanel {
     override var canBecomeKey: Bool { true }
     override var canBecomeMain: Bool { false }
 
-    func positionNearMouse() {
+    func positionCenteredOnScreen() {
         let mouseLocation = NSEvent.mouseLocation
 
         guard let screen = NSScreen.screens.first(where: { NSMouseInRect(mouseLocation, $0.frame, false) }) ?? NSScreen.main else {
@@ -54,24 +54,18 @@ class FloatingPanel: NSPanel {
 
         let screenFrame = screen.visibleFrame
 
-        var panelOrigin = NSPoint(
-            x: mouseLocation.x + 10,
-            y: mouseLocation.y - self.frame.height - 10
-        )
+        let originX = screenFrame.minX + (screenFrame.width - self.frame.width) / 2
 
-        if panelOrigin.x + self.frame.width > screenFrame.maxX {
-            panelOrigin.x = screenFrame.maxX - self.frame.width - 10
-        }
-        if panelOrigin.x < screenFrame.minX {
-            panelOrigin.x = screenFrame.minX + 10
-        }
-        if panelOrigin.y < screenFrame.minY {
-            panelOrigin.y = mouseLocation.y + 10
-        }
-        if panelOrigin.y + self.frame.height > screenFrame.maxY {
-            panelOrigin.y = screenFrame.maxY - self.frame.height - 10
+        // shift up by 10% of the screen’s height so the panel sits slightly above
+        // exact centre (better visual balance when typing at the top of the screen)
+        let verticalOffset = screenFrame.height * 0.1
+        var originY = screenFrame.minY + (screenFrame.height - self.frame.height) / 2 + verticalOffset
+
+        // ensure we don’t push the panel off the top of the visible frame
+        if originY + self.frame.height > screenFrame.maxY {
+            originY = screenFrame.maxY - self.frame.height - 10
         }
 
-        self.setFrameOrigin(panelOrigin)
+        self.setFrameOrigin(NSPoint(x: originX, y: originY))
     }
 }

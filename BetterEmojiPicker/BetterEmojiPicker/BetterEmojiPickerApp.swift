@@ -262,8 +262,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, ObservableObject {
             createPickerPanel()
         }
 
-        // Position and show
-        pickerPanel?.positionNearMouse()
+        // Position and show – always centred on the current screen.
+        pickerPanel?.positionCenteredOnScreen()
         pickerPanel?.orderFrontRegardless()
         pickerPanel?.makeKey()
 

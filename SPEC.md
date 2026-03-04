@@ -77,11 +77,12 @@ The built-in macOS emoji picker (Ctrl+Cmd+Space) has several limitations:
 
 ### Window Positioning
 
-- **Anchor**: Top-left corner of window at mouse cursor
-- **Edge Handling** (flip anchor):
-  - If insufficient space to the right: right edge aligns with mouse instead
-  - If insufficient space below: bottom edge aligns with mouse instead
-- **Screen Bounds**: Use `NSScreen.main.visibleFrame` to account for menu bar and Dock
+- **Anchor**: Window is always placed slightly above the vertical centre of the
+  screen containing the cursor (10 % higher than exact centre).
+  Falls back to `NSScreen.main` if the mouse location cannot be determined.
+- **Multi‑monitor**: Determines the appropriate `NSScreen` based on
+  `NSEvent.mouseLocation` and centres within that monitor's `visibleFrame`.
+- **Screen Bounds**: Uses the screen's `visibleFrame` to account for menu bar and Dock.
 
 ### Search Behavior
 
