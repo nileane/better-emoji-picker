@@ -5,7 +5,7 @@
 
 ## Overview
 
-BEP is a native macOS application that replaces the built-in emoji picker with a faster, more keyboard-friendly alternative. The key differentiator is that BEP **stays open** after selecting an emoji, allowing rapid insertion of multiple emojis without repeatedly invoking the picker.
+BEP is a native macOS application that replaces the built-in emoji picker with a faster, more keyboard-friendly alternative.
 
 ## Why BEP?
 
@@ -13,7 +13,6 @@ The built-in macOS emoji picker (Ctrl+Cmd+Space) has several limitations:
 
 | Issue | Built-in Behavior | BEP Solution |
 |-------|------------------|--------------|
-| Closes after selection | Dismisses immediately | Stays open for multiple selections |
 | Slow startup | Can lag, especially first open | Pre-loaded, instant popup |
 | Large emoji display | Fixed size, wastes space | Compact grid (10 per row) |
 | Smart suggestions | Context-aware suggestions hijack UX | Always shows full picker |
@@ -24,7 +23,6 @@ The built-in macOS emoji picker (Ctrl+Cmd+Space) has several limitations:
 ### Core Features (MVP)
 
 1. **Instant Popup** - Appears immediately when shortcut is pressed
-2. **Stays Open** - Does not dismiss after selecting an emoji
 3. **Instant Search** - Fuzzy filtering as you type
 4. **Compact Grid** - 10 emojis per row, smaller cells
 5. **Keyboard Navigation** - Arrow keys to move, Enter to insert, Escape to dismiss
